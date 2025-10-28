@@ -38,11 +38,13 @@ jobs:
         run: npm run test
       - name: Upload test report
         if: failure()
+        id: test-report
         uses: actions/upload-artifact@v4
         with:
           name: test-report
           path: test.json
-          run: test.json
+      - name: print test json
+        run: ehco ${{ toJson(steps.test-report.outputs) }}
 
   build:
     needs: test
