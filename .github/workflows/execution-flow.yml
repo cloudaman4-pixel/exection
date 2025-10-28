@@ -19,7 +19,6 @@ jobs:
       
         run: |
           echo ${{ toJson(steps.cache.outputs.cache-hit) }}
-          npm ci
       - name: Lint code
         run: npm run lint
   test:
