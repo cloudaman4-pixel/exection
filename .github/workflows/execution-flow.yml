@@ -43,7 +43,6 @@ jobs:
           path: test.json
 
   build:
-    if: failure()
     needs: test
     runs-on: ubuntu-latest
     steps:
@@ -66,7 +65,6 @@ jobs:
           name: dist-files
           path: dist
   deploy:
-    if: failure()
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -78,3 +76,10 @@ jobs:
         run: ls
       - name: Deploy
         run: echo "Deploying..."
+  print:
+    needs: [ lint ,  deploy ]
+    if: failure()
+    runs-on: ubuntu-latest
+    steps:
+      - name: print
+        run: echo problem
