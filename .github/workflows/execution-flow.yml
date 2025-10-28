@@ -43,6 +43,7 @@ jobs:
         with:
           name: test-report
           path: test.json
+          run: test.json
 
   build:
     needs: test
