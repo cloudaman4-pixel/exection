@@ -44,6 +44,7 @@ jobs:
           name: test-report
           path: test.json
       - name: print test json
+        if: failure()
         run: ehco ${{ toJson(steps.test-report.outputs) }}
 
   build:
